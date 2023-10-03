@@ -1,11 +1,11 @@
-package platform.service;
+package com.blokvdev.codeplatform.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import platform.DTO.RequestCodeSpitedDTO;
-import platform.DTO.ResponseCodeSnipedDTO;
-import platform.exception.NotFoundElementByIdException;
-import platform.model.CodeSniped;
-import platform.repository.CodeRepository;
+import com.blokvdev.codeplatform.DTO.RequestCodeSpitedDTO;
+import com.blokvdev.codeplatform.DTO.ResponseCodeSnipedDTO;
+import com.blokvdev.codeplatform.exception.NotFoundElementByIdException;
+import com.blokvdev.codeplatform.model.CodeSniped;
+import com.blokvdev.codeplatform.repository.CodeRepository;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -48,7 +48,7 @@ public class Service {
             if (codeSniped.getLeftViews() == 1) {
                 codeRepository.delete(codeSniped);
                 responseCodeSniped.setViews(-1);
-            } else if (codeSniped.getLeftViews() > 1) {
+            } else {
                 int leftViews = codeSniped.getLeftViews() - 1;
                 codeSniped.setLeftViews(leftViews);
                 responseCodeSniped.setViews(leftViews);
@@ -60,11 +60,13 @@ public class Service {
     }
 
     public String addCodeSniped(RequestCodeSpitedDTO codeSnipedDTO) {
-        CodeSniped codeSniped =  new CodeSniped(codeSnipedDTO.getCode());
-        codeSniped.setLocalDateTime(LocalDateTime.now());
-        codeSniped.setId(UUID.randomUUID().toString());
-        codeSniped.setLeftTimeSec(Integer.parseInt(codeSnipedDTO.getTime()));
-        codeSniped.setLeftViews(Integer.parseInt(codeSnipedDTO.getViews()));
+        CodeSniped codeSniped =  new CodeSniped(
+                UUID.randomUUID().toString(),
+                codeSnipedDTO.getCode(),
+                LocalDateTime.now(),
+                Integer.parseInt(codeSnipedDTO.getTime()),
+                Integer.parseInt(codeSnipedDTO.getViews())
+        );
         codeRepository.save(codeSniped);
         return codeSniped.getId();
     }

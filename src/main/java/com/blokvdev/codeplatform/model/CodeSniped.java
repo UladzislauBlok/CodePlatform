@@ -1,15 +1,19 @@
-package platform.model;
+package com.blokvdev.codeplatform.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
 @Table(name = "code")
+@NoArgsConstructor
+@AllArgsConstructor
 public class CodeSniped {
 
     @Id
@@ -18,50 +22,4 @@ public class CodeSniped {
     private LocalDateTime localDateTime;
     private int leftTimeSec;
     private int leftViews;
-
-    public CodeSniped() {}
-
-    public CodeSniped(String code) {
-        this.code = code;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
-    }
-
-    public void setLocalDateTime(LocalDateTime localDateTime) {
-        this.localDateTime = localDateTime;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public int getLeftTimeSec() {
-        return leftTimeSec;
-    }
-
-    public void setLeftTimeSec(int leftTimeSec) {
-        this.leftTimeSec = leftTimeSec;
-    }
-
-    public int getLeftViews() {
-        return leftViews;
-    }
-
-    public void setLeftViews(int leftViews) {
-        this.leftViews = leftViews;
-    }
 }

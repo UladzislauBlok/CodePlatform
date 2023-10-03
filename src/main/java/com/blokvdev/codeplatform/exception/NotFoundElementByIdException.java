@@ -1,4 +1,4 @@
-package platform.exception;
+package com.blokvdev.codeplatform.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

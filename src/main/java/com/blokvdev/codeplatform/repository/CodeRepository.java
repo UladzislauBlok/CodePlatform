@@ -1,7 +1,7 @@
-package platform.repository;
+package com.blokvdev.codeplatform.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import platform.model.CodeSniped;
+import com.blokvdev.codeplatform.model.CodeSniped;
 
 import java.util.List;
 
